@@ -1,0 +1,86 @@
+openapi: 3.0.0
+info:
+  title: FMCG-commercial-app
+  description: This is FMCG-commercial-app API specification.
+  version: 1.0.0
+servers:
+- url: https://localhost:3000/api
+tags:
+- name: User
+  description: User related API
+- name: Product
+    description: Product related API
+paths:
+  /v1/user/signup:
+    post:
+      tags:
+        - Users
+      summary: User Registration API
+      description: User Registration API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: John Doe
+                lastName: doe
+                email: john@yopmail.com
+                userName: jhon@123
+                mobileNumber: "9111444444"
+                password: abc
+                status: active
+      responses:
+        200:
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Register:
+                  value:
+                    message: "Successful"
+        500:
+          description: Something went wrong
+          content: {}
+   
+components:
+  schemas:
+    bookInformation:
+      type: object
+      properties:
+        name:
+          type: string
+        authorName:
+          type: string
+        category:
+          type: string
+        price:
+          type: number
+        totalPage:
+          type: integer
+    AllBooksInformations:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          authorName:
+            type: string
+          category:
+            type: string
+          price:
+            type: number
+          totalPage:
+            type: integer
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: Example value:- Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5MmQwMGJhNTJjYjJjM
+      name: Authorization
+      in: header
